@@ -1,0 +1,89 @@
+<html>
+    <head>
+
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.min.css" />
+
+    </head>
+    <body>
+        <div id="app">
+
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover uk-width-2-3@m"
+                style="margin-left:auto;margin-right:auto;margin-top:2em;">
+                <h3 class="uk-card-title"
+                    style="text-align:center;">
+                    Welcome to the Place 2 Place Cost of Living Calculator! <span style="color:red;font-size:small;">*alpha</span>
+                </h3>
+
+                <div v-if="loading" style="text-align:center;">
+                    <div uk-spinner>
+                    </div>
+                </div>
+
+                <div v-if="!loading">
+
+                    <p>
+                        <div class="uk-margin">
+                            <label for="from_place">Where are you?</label>
+                            <input class="uk-input" type="text" 
+                                id="from_place" placeholder="City State"
+                                v-model="fromPlace">
+                        </div>
+                        <div class="uk-margin">
+                            <label for="to_place">Where are you going?</label>
+                            <input class="uk-input" type="text" 
+                                id="to_place" placeholder="City State"
+                                v-model="toPlace">
+                        </div>
+                        <div class="uk-margin">
+                            <label for="yealy_income">Yearly Income</label>
+                            <input class="uk-input" type="number" 
+                                id="yealy_income" 
+                                min="0.00" step="0.01" 
+                                placeholder="#####.##"
+                                v-model="yearlyIncome">
+                        </div>
+                        <div v-if="necessaryIncome && calculatedToPlace && calculatedFromPlace" 
+                            class="uk-comment-body"
+                            style="text-align:center;">
+                            <p>You will need <strong>${{necessaryIncome}}</strong> to move from <strong>{{calculatedFromPlace}}</strong> to <strong>{{calculatedToPlace}}</p>
+                        </div>
+                        <div v-if="errorMessage" 
+                            class="uk-comment-body"
+                            style="text-align:center;color:red;">
+                            <p>{{errorMessage}}</p>
+                        </div>
+                        <div class="uk-margin"
+                            style="text-align:center;">
+                            <button class="uk-button uk-button-default"
+                                :disabled="!fromPlace || !toPlace || !yearlyIncome"
+                                v-on:click="calculateCOL">
+                                Calculate
+                            </button>
+                        </div>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div style="color:lightslategrey;font-size: x-small;margin-top: 5em; margin-left: 10em; margin-right: 10em;text-align: center;">
+                Created in 2020 by Dustin Gulley. This site was created as a toy app to learn Vue.js. Please do not make any moving decisions based on the cost of living calculated here. The dataset used to calculate the COL is modified from a dataset contained <a href="https://odn.data.socrata.com/dataset/ODN-Cost-of-Living/d7qh-46tx" target="_blank">here</a>. Note that only the 2017 dates were used. The algorithm used to calculate distance is a modified version of the algorithm presented <a href="https://www.geodatasource.com/developers/javascript" target="_blank"> here</a>.
+            </span>
+
+        </div>
+
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js"></script>
+
+        <!-- <link rel="stylesheet" href="index.css"> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+        <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+
+        <script src="main.js"></script>
+
+    </body>
+</html>
