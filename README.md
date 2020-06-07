@@ -10,7 +10,7 @@ Note that only the 2017 dates were used.
 
 The algorithm used to calculate distance is a modified version of the algorithm presented here https://www.geodatasource.com/developers/javascript".
 
-You may view this site at https://github.com/vision89/COLCalculator
+You may view this site at https://vision89.github.io/
 
 # License
 
