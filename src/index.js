@@ -91,7 +91,7 @@ el: '#app',
             function getLocation(name) {
 
                 return fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-                    name.replace(/[' ']+/g, '+') + '&key=AIzaSyDaN8hISTepz9iTx1qoUnNtaqNeexEaMH8')
+                    name.replace(/[' ']+/g, '+') + '&key=')
                     .then(response => response.json());
 
             }
